@@ -1,1 +1,186 @@
+Key Differences between JSP & HTML :
 
+HTML is a client side scripting language while JSP is a server side programming technology.
+HTML is fast as it runs on client (browser) while JSP is slower to load as it runs on server (Apache tomcat, glassfish)
+HTML is simple to code, JSP needs some knowledge of Java programming to use it to full extent.
+HTML needs cascading style sheets (CSS) and javaScript (JS) to make it look interactive as it is Static in nature while JSP can interact without the help of CSS & JS even then we can use CSS & JS with JSP pages to make them more elegant and user friendly.
+JSP have access to the entire family of Java APIs, including the JDBC API to access enterprise databases while HTML is very limited in this case.
+In JSP, we can use a lot of tags such as action tags, jstl, custom tags etc. that reduces the code. Moreover, we can use EL, implicit objects etc. All this functionality is missing in HTML.
+A JSP page consists of HTML tags and JSP tags while HTML can only have html tags.
+A JSP page can generate & contain dynamic information while regular HTML cannot.
+JSP tags can be used for a variety of purposes, such as retrieving information from a database or registering user preferences, accessing JavaBeans components, passing control between pages and sharing information between requests, pages etc… while HTML needs a server side component to perform all these tasks.
+JSP is an integral part of Java EE, a complete platform for enterprise class applications. This means that JSP can play a part in the simplest applications to the most complex and demanding while HTML doesn’t even come close to this. I should affirm that 
+
+vaScript is the world's most popular programming language.
+
+JavaScript is the programming language of the Web.
+
+JavaScript is easy to learn.
+
+This tutorial will teach you JavaScript from basic to advanced.
+
+Examples in Each Chapter
+With our "Try it Yourself" editor, you can edit the source code and view the result.
+
+Example
+My First JavaScript
+Click me to display Date and Time
+
+Use the Menu
+We recommend reading this tutorial, in the sequence listed in the menu.
+
+If you have a large screen, the menu will always be present on the left.
+
+If you have a small screen, open the menu by clicking the top menu sign ☰.
+
+Learn by Examples
+Examples are better than 1000 words. Examples are often easier to understand than text explanations.
+
+This tutorial supplements all explanations with clarifying "Try it Yourself" examples.
+
+If you try all the examples, you will learn a lot about JavaScript, in a very short time!
+
+Why Study JavaScript?
+JavaScript is one of the 3 languages all web developers must learn:
+
+   1. HTML to define the content of web pages
+
+   2. CSS to specify the layout of web pages
+
+   3. JavaScript to program the behavior of web pages
+
+This tutorial covers every version of JavaScript:
+
+The Original JavaScript ES1 ES2 ES3 (1997-1999)
+The First Main Revision ES5 (2009)
+The Second Revision ES6 (2015)
+The Yearly Additions (2016, 2017, 2018)
+
+Learning Speed
+In this tutorial, the learning speed is your choice.
+
+Everything is up to you.
+
+If you are struggling, take a break, or re-read the material.
+
+Always make sure you understand all the "Try-it-Yourself" examples.
+
+The only way to become a clever programmer is to: Practice. Practice. Practice. Code. Code. Code !
+
+Test Yourself With Exercises
+Exercise:
+Create a variable called carName and assign the value Volvo to it.
+
+var 
+ = "
+";
+
+Start the Exercise
+
+Commonly Asked Questions
+How do I get JavaScript?
+Where can I download JavaScript?
+Is JavaScript Free?
+You don't have to get or download JavaScript.
+
+JavaScript is already running in your browser on your computer, on your tablet, and on your smart-phone.
+
+JavaScript is free to use for everyone.
+
+JavaScript References
+W3Schools maintains a complete JavaScript reference, including all HTML and browser objects.
+
+The reference contains examples for all properties, methods and events, and is continuously updated according to the latest web standards.
+
+JavaScript Quiz Test
+Test your JavaScript skills at W3Schools!
+
+
+
+
+Kickstart your career
+Get certified by completing the JavaScript course
+COLOR PICKER
+colorpicker
+LIKE US
+  
+Get certified
+by completing
+a course today!
+
+HOW TO
+Tabs
+Dropdowns
+Accordions
+Side Navigation
+Top Navigation
+Modal Boxes
+Progress Bars
+Parallax
+Login Form
+HTML Includes
+Google Maps
+Range Sliders
+Tooltips
+Slideshow
+Filter List
+Sort List
+Certificates
+
+Top Tutorials
+HTML Tutorial
+CSS Tutorial
+JavaScript Tutorial
+How To Tutorial
+SQL Tutorial
+Python Tutorial
+W3.CSS Tutorial
+Bootstrap Tutorial
+PHP Tutorial
+Java Tutorial
+C++ Tutorial
+jQuery Tutorial
+Top References
+HTML Reference
+CSS Reference
+JavaScript Reference
+SQL Reference
+Python Reference
+W3.CSS Reference
+Bootstrap Reference
+PHP Reference
+HTML Colors
+Java Reference
+Angular Reference
+jQuery Reference
+Top Examples
+HTML Examples
+CSS Examples
+JavaScript Examples
+How To Examples
+SQL Examples
+Python Examples
+W3.CSS Examples
+Bootstrap Examples
+PHP Examples
+Java Examples
+XML Examples
+jQuery Examples
+Web Courses
+HTML Course
+CSS Course
+JavaScript Course
+SQL Course
+Python Course
+jQuery Course
+PHP Course
+Bootstrap Course
+XML Course
+W3Schools is optimized for learning and training. Examples might be simplified to improve reading and learning. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using W3Schools, you agree to have read and accepted our terms of use, cookie and privacy policy.
+
+Copyright 1999-2021 by Refsnes Data. All Rights Reserved.
+W3Schools is Powered by W3.CSS
+
+Enjoy Learning !!!
+
+*quoting from: Quora. com
