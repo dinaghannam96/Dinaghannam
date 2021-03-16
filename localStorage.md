@@ -124,4 +124,5 @@ Type something in the textarea and click Save. (I pasted in a bit of prose from 
 TIP: While you’re on the page, you could try opening the browser console from within Developer Tools and executing some of the localStorage methods as shown in the previous section to confirm what’s happening behind the scenes.
 
 That’s all there is to it!
+
 source: tiny blue print
