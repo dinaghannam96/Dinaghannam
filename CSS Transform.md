@@ -223,6 +223,7 @@ Give your div the class “border” and add the following CSS to your styles:
 .border:hover
 {
         box-shadow: inset 0 0 0 25px #53a7ea;
+       
 }
 
- 
+ Source: wwbdesignerdepot.com
