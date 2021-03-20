@@ -1,0 +1,355 @@
+Forms allow you to collect information from visitors, and 
+JavaScript can help you get the right information from them. 
+Since JavaScript was created, it has been used to enhance and validate forms. 
+Enhancements make forms easier to use. Validation checks whether the user has provided 
+the right information before submitting the form (if not, it provides feedback to the user). 
+This chapter is divided into the following three sections: 
+FORM HTMLS FORM FORM 
+ENHANCEMENT ELEMENTS VALIDATION 
+This section features HTMLS contains validation The final, and longest, 
+many examples of form features that do not use example in the book shows 
+enhancement. Each one JavaScript. This section a script that validates (and 
+introduces the different addresses ways in which enhances) the registration 
+properties and methods you you can offer validation to form that you can see on the 
+can use when working with old and new browsers in a right-hand page. It has over 
+form elements. consistent way. 250 lines of code. 
+The first section of this chapter also drops jQuery in favor of plain JavaScript, because you 
+should not always rely upon jQuery (especially for scripts that use little of its functionality). 
+8 FORM ENHANCEMENT & VALIDATION 
+... 
+J 
+~ 
+' 
+', 
+l 
+• 
+! 
+.. 
+' 4 
+J 
+I HELPER FUNCTIONS 
+The first section of this chapter uses plain JavaScript, no jQuery. 
+We will create our own JavaScript file to handle cross-browser issues, 
+it will contain one helper function to create events. 
+Forms use a lot of event handlers and (as you saw 
+in Chapter 6) IES-8 used a different event model 
+than other browsers. You can use jQuery to deal 
+with cross-browser event handling. But, if you do 
+not want to include the entire jQuery script just to 
+handle events in older version of IE, then you need to 
+write your own fallback code to handle the events. 
+Instead of writing the same tailback code every 
+time you need an event handler, you can write the 
+tailback code once in a helper function, and then call 
+that function every time you need to add an event 
+handler to a page. 
+On the right-hand page you can see a function called 
+add Event(). It lives in a file called utilities .j s. 
+Once that file has been included in the HTML page, 
+any scripts included after it will be able to use this 
+function to create cross-browser event handler: 
+addEvent(el, event, callback); 
+CD ® ® 
+The function takes three parameters: 
+i) el is a DOM node representing the element that 
+the event will be added to or removed from. 
+ii) event is the type of event being listened for. 
+iii) callback is the function that is to be run when 
+the event is triggered on that element. 
+The ut i 1 it i es. j s file on the website also has a 
+method to remove events. 
+@ FORM ENHANCEMENT & VALIDATION 
+ff you look inside the add Event() method on the 
+right-hand page, a conditional statement checks 
+whether the browser supports addEventL i stener(). 
+ff it does, a standard event listener will be added. 
+If not, then the IE fallback will be created. 
+The fallback addresses three points: 
+• It uses I E's the a ttachEvent () method. 
+• In IES-8, the event object is not automatically 
+passed into the event-handling function (and is 
+not available via the this keyword) see p264. 
+Instead it is available on the window object. 
+So the code must pass the event object 
+into the event handler as a parameter. 
+• When you pass parameters to an event-handling 
+function, the call must be wrapped in an 
+anonymous function see p256. 
+To achieve this, the fallback adds two methods to the 
+element the event handler will be placed upon (see 
+steps 5 and 6 on the right-hand page). It then uses 
+IE's attachEvent () method to add the event handler 
+code to the element. 
+The functions demonstrate two new techniques: 
+• Adding new methods to DOM nodes: 
+You can add methods to DOM nodes because 
+they are just objects (that represent elements). 
+• Creating method names using a variable: 
+Square brackets can be used to set a property/ 
+method, their content is evaluated into a string. Here, you can see the add Event() function that will 
+be used to create all of the event handlers in this 
+chapter. It lives in a file called uti l ities.js. 
+JAVASCRIPT 
+UTILITIES Fl LE 
+These reusable functions are often referred to as 
+helper functions. As you write more JavaScript, you 
+are increasingly likely to create this type of function. 
+cl3/ js/ utilities.js 
+// Helper function to add an event l i stener 
+G) function addEvent(el , event , callback) { 
+@ if ('addEventlistener' in el) { II ~ el . addEventlistener(event, cal lbac k, false); // 
+© el se { 
+~ el[' e ' + event+ cal l bac k] =cal l back; 
+~ el [event + ca l l back] = f unct i on() { 
+If addEventlistener works 
+Use it 
+Ot herwise 
+Make cal l back a method of el 
+Add second method 
+el [ ' e' +event+ cal l back](window. event); 
+} ; 
+II 
+II 
+II 
+II Use i t to cal l prev func 
+el . attachEvent ( 'on ' +event, el [ event + callback]) ; // Use at tachEven t () 
+// to cal l t he second function, which t hen call s t he f i r st one 
+1. The add Event() function is declared with three 
+parameters: element, event type, callback function. 
+2. A conditional statement checks if the element 
+supports the addEventL i stener() method. 
+3. If it does, then addEventL i stener() is used. 
+4. If not, the fallback code will run instead. 
+The tailback must add two methods to the element 
+the event handler will be placed upon. It then uses 
+Internet Explorer's attachEvent () method to call 
+them when the event occurs on that element. 
+5. The first method added to the element is the 
+code that should run when the event occurs on this 
+element (it was the third parameter of the function). 
+6. The second method calls the method from the 
+previous step. It is needed in order to pass the event 
+object to the function in step 5. 
+7. The attachEvent () method is used to listen for 
+the specified event, on the specified element. When 
+the event fires, it calls the method that it added in 
+step 6, which in turn calls the method in step 5 using 
+the correct reference to the event object. 
+In steps 5 and 6, square bracket notation is used to 
+add a method name to an element: 
+e] ['e' +event+ callback] 
+i) The DOM node is stored in e 1. The square 
+brackets add the method name to that node. That 
+method name must be unique to that element, so it 
+is created using three pieces of information. 
+ii) The method names are made up of: 
+• The letter e (used for the first method in step 5 
+but not used in step 6) 
+• The eventtype (e.g., click, blur, mouseover) 
+• The code from the callback function 
+In the code on the right-hand page, the value of this 
+method is the callback function. (This could lead to a 
+long method name, but it serves the purpose.) This 
+function is based on one by John Resig, who created 
+jQuery(http: //ejohn.org/ projects/flexiblejavascri pt-events/). 
+FORM ENHANCEMENT & VALIDATION @ THE FORM ELEMENT 
+DOM nodes for form controls have different properties, methods, and 
+events than some of the other elements you have met so far. 
+Here are some you should note for the <form> element. 
+PROPERTY DESCRIPTION 
+action The URL the form is submitted to 
+method If it is to be sent via,GET or POST 
+name Rarely used, more common to select a 
+form by the value of its id attribute 
+el ements A collection of the elements in the 
+form that users can interact with. They 
+can be accessed via index numbers or 
+the values of their name attributes. 
+The DOM methods you saw in Chapter 5, such as 
+getElementByld(),getElementsByTagName(),and 
+querySe l ector(), are the most popular techniques 
+for accessing both the <form> element and the form 
+contro.ls within any form. However, the document 
+object also has something called the forms 
+collection. The forms collection holds a reference to 
+each of the <form> elements that appear on a page. 
+Each item in a collection is given an index number 
+(a number starting at 0, like an array). This would 
+access the second form using its index number: 
+document.forms[!]; 
+You can also access a form using the value of its 
+name attribute. The following would select a form 
+whose name attribute has a value of login: 
+document . forms.login 
+§ FORM ENHANCEMENT & VALIDATION 
+METHOD DESCRIPTION 
+submit () This has the same effect as clicking the 
+submit button on a form 
+reset () Resets the form to the initial values it had 
+when the page loaded 
+EVENT DESCRIPTION 
+submit Fires when the form is submitted 
+reset Fires when the form is reset 
+Each <form> element in the page also has an 
+e 1 ements collection. It holds all of the form controls 
+within that form. Each item in thee l ements 
+collection can also be accessed by index number or 
+by the value of its name attribute. 
+The following would access the second form on the 
+page and then select the first form control within it: 
+document.forms[l].el ements[O]; 
+The following would access the second form on the 
+page, then select the element whose name attribute 
+had a value of password from that form: 
+document.forms[l ].elements.password; 
+Note: index numbers in a collection of elements can 
+change if the markup of a page is altered. So, use of 
+index numbers ties a script to the HTML markup (-it 
+does not achieve a separation of concerns). FORM CONTROLS 
+Each type of form control uses a different combination of the properties, 
+methods, and events shown below. Note that the methods can be used to 
+simulate how a user would interact with the form controls. 
+PROPERTY 
+value 
+type 
+name 
+DESCRIPTION 
+In a text input, it is the text the user entered; otherwise, it is the value of the va 1 ue attribute 
+When a form control has been created using the <input> element, this defines the type of the 
+form element (e.g., text, password, radio, checkbox) 
+Gets or sets the value of the name attribute 
+default Val ue The initial value of a text box or text area when the page is rendered 
+form The form that the control belongs to 
+disabled Disables the <form> element 
+checked Indicates which checkbox or radio buttons have been checked. 
+This property is a Boolean; in JavaScript it will have a value of true if checked 
+defaul tChecked Whether the checkbox or radio button was checked or not when the page loaded (Boolean) 
+sel ected Indicates that an item from a select box has been selected (Boolean - true if selected) 
+METHOD DESCRIPTION 
+focus() Gives an element focus 
+blur() Removes focus from an element 
+sel ect() Selects and highlights text content of an element, (e.g., text inputs, text areas, and passwords) 
+cl ick() Triggers a click event upon buttons, checkboxes, and file upload 
+Also triggers a submit event on a submit button, and the reset event on a reset button 
+EVENT DESCRIPTION 
+blur When the user leaves a field 
+focus When the user enters a field 
+click When the user clicks on an element 
+change When the value of an element changes 
+input When the value of an <input> or <texta rea> element changes 
+keydown, keyup, key press When the user interacts with a keyboard 
+FORM ENHANCEMENT & VALIDATION 8 SUBMITTING FORMS 
+In this example, a basic login form lets users enter a 
+username and password. When the user submits the 
+form, a welcome message will replace the form. 
+On the right-hand page you can see both the HTML 
+and the JavaScript for this example. 
+1. Place the script in an Immediately Invoked 
+Function Expression (llFE see p97). (This is not 
+shown in the flowchart.) 
+2. A variable called form is created and it is set to 
+hold the <form> element. It is used in the event 
+listener in the next line of code. 
+3. An event listener triggers an anonymous function 
+when the form is submitted. Note how this is set 
+using the add Event() function that was created in 
+the ut i 1 it i es. j s file that you saw on p571. 
+4. To prevent the form being sent (and to allow 
+this example to show a message to the user) the 
+preventDefault() method is used on the form. 
+5. The collection of elements in this form is stored in 
+a variable called e 1 ements. 
+6. To get the username, first select the username 
+input from the e 1 ements collection using the value 
+of its name attribute. Then, to get the text the user 
+entered, the va 1 ue property of that element is used. 
+7. A welcome message is created and stored in a 
+variable called msg; this message will incorporate the 
+username that the visitor entered. 
+8. The message replaces the form within the HTML. 
+8 FORM ENHANCEMENT & VALIDATION 
+In the HTML page, the uti l ities . j s file you saw on 
+p571 is included before the submit-event. j s script 
+because its add Event() function is used to create 
+the event handlers for this example. utilities . j s is 
+included for all examples in this section. 
+f) Create variable: fonn holds <fonn> element 
+... 
+I 
+Event : submit on form 
+I 
+ANONYMOUS FUNCTION : 
+Greets the user by username 
+0 Prevent default action of form submitting 
+I 
+e 
+0 
+0 
+0 
+Create variables: 
+e 1 ements: elements collection 
+username: username 
+msg: welcome message 
+... 
+I 
+Replace form with welcome message 
+The event listener wa its for the submit event on the 
+form (rather than a click on the submit button) 
+because the form can be submitted in other ways 
+than clicking on the submit button. For example, the 
+user might press the Enter key. THE SUBMIT EVENT & 
+GETTING FORM VALUES 
+M:iief.11 cl3/submit-event.html 
+<form id="login" action="/ login" method="post">. .. 
+<div class="two-thirds column" i d="main"> 
+<fieldset> 
+<legend>Login</ legend> 
+<label for="username">Username: </ label> 
+<input type="text" id=" username" name="username" I> 
+<label for="pwd">Password: </ label> 
+<input type="password" id="pwd" name="pwd" / > 
+<input type="submit" value="Login" /> 
+</ fieldset> 
+</di v> <!-- .two-thirds --> 
+</ form> 
+<script src="js/utilities.js"><lscript> 
+<script src="js/submit-event.js"></ script> 
+JAVASCRIPT 
+CD (function() { 
+cl3/js/submit-event.js 
+~ var form= document.getElementByld('login '); II Get form element 
+® 
+@ 
+add Event (form, 'submit', function ( e) 
+e.preventDefault(); 
+var elements this.elements; 
+//When us er submits form 
+II Stop it being sent 
+® 
+© 
+0 
+® 
+var username = elements.username.value; 
+II Get al l form elements 
+/I Sel ect username entered 
+var msg = 'Welcome ' + username; /I Create welcome message 
+document.getElementByld('main').textContent = msg; II Write welcome message 
+} ) ; 
+} ()); 
+When selecting a DOM node, if you are likely to 
+use it again, it should be cached. On the right, you 
+can see a variation of the above code, where the 
+username and the main element have both been 
+stored in variables outside of the event listener. 
+If the user had to resubmit the form, the browser 
+would not have to make the same selections again. 
+var form = document.getElementByid(' login') ; 
+var el ements = form.elements; 
+var el Username = elements.username ; 
+var elMain = document .getElementByld('main'); 
+addEvent (form, 'submit', function (e) { 
+e.preventDefault(); 
+var msg = ' Welcome ' + el Username.value; 
+el Main.textContent = msg; 
+} ) ; 
+FORM ENHANCEMENT & VALIDATION 8 
